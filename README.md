@@ -47,10 +47,15 @@ pnpm start
 
 Le `Dockerfile` fournit un point de départ pour un hébergeur compatible avec Node/Docker. Le dépôt GitHub conserve le code, mais GitHub Pages ne peut pas exécuter le serveur Express, l’authentification ni MySQL. L’hébergement complet exige donc un serveur Node/Docker, une base MySQL et les variables d’environnement sécurisées. Le projet MohamiConnect existant continue de fournir son Preview et son runtime géré; publier le code sur GitHub ne publie pas à lui seul un site sur GitHub Pages.
 
+## Copie statique HTML/CSS
+
+La maquette autonome se trouve dans `docs/index.html`, avec ses styles dans `docs/styles.css`. Ouvrez `docs/index.html` dans Visual Studio Code et prévisualisez-le dans un navigateur. Elle peut être publiée comme site statique GitHub Pages en sélectionnant la branche `main` et le dossier `/docs`, si Pages est disponible pour ce dépôt. Cette copie est visuelle uniquement : elle n’envoie pas le formulaire et ne fournit ni authentification, ni espace admin sécurisé, ni base de données. L’application complète reste dans `client/` et `server/`.
+
 ## Structure
 
 - `client/` : interface React, pages, composants et styles.
 - `server/` : Express, routes tRPC, OAuth et accès MySQL.
+- `docs/` : aperçu HTML/CSS statique, sans backend.
 - `shared/` : constantes et types partagés entre client et serveur.
 - `drizzle/` : schéma et migrations de base de données.
 - `Dockerfile` : build et démarrage du serveur de production.

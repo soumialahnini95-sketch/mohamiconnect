@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173c36" />
+    <meta
+      name="description"
+      content="Aperçu statique MohamiConnect — trouver un avocat au Maroc."
+    />
+    <title>MohamiConnect — Trouver un avocat au Maroc</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+    <div class="static-notice" role="note">
+      <strong>Version HTML/CSS statique.</strong>
+      Cette maquette n’envoie ni n’enregistre aucune donnée. Pour les demandes
+      réelles et l’accès sécurisé, utilisez l’application complète.
+    </div>
+
+    <header class="site-header" id="accueil">
+      <a class="brand" href="#accueil" aria-label="MohamiConnect, accueil">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none">
+            <path
+              d="M7 36V21.2C7 12.82 13.72 6 22 6s15 6.82 15 15.2V36"
+              stroke="currentColor"
+              stroke-width="2.2"
+            />
+            <path
+              d="M13 36V22a9 9 0 0 1 18 0v14M4 36h36M22 13v16m-7-8h14m-10.5 0-4 6h8l-4-6Zm7 0-4 6h8l-4-6Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <span class="brand-name">Mohami<span>Connect</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="#expertises">Nos expertises</a>
+        <a href="#comment-ca-marche">Comment ça marche</a>
+        <a class="nav-button" href="#espace-avocat"
+          >Espace avocat <span aria-hidden="true">→</span></a
+        >
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <section class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Le droit, plus proche de vous</p>
+          <h1 id="hero-title">
+            Trouvez l'avocat qu'il vous faut <em>au Maroc</em>
+          </h1>
+          <p class="hero-lead">
+            Décrivez votre situation. Votre demande peut être orientée vers des
+            avocats selon la ville et la spécialité recherchées.
+          </p>
+          <a class="scroll-link" href="#demande"
+            ><span class="scroll-icon" aria-hidden="true">↓</span> Déposer une
+            demande <span class="scroll-line"></span
+          ></a>
+          <div class="assurance-row">
+            <div class="assurance-item">
+              <span class="assurance-icon" aria-hidden="true">✓</span
+              ><span
+                ><strong>Vos échanges restent privés</strong
+                ><small
+                  >Coordonnées protégées dans l’application complète</small
+                ></span
+              >
+            </div>
+            <span class="assurance-divider" aria-hidden="true"></span>
+            <div class="assurance-item">
+              <span class="assurance-icon" aria-hidden="true">⌖</span
+              ><span
+                ><strong>Partout au Maroc</strong
+                ><small>Quatre villes couvertes</small></span
+              >
+            </div>
+          </div>
+          <div class="justice-seal" aria-hidden="true">
+            <span>⚖</span><small>JUSTICE<br />DE PROXIMITÉ</small>
+          </div>
+        </div>
+
+        <section class="request-card" id="demande" aria-labelledby="form-title">
+          <div class="card-heading">
+            <div>
+              <span class="eyebrow-small">PREMIÈRE ÉTAPE</span>
+              <h2 id="form-title">Parlez-nous de votre besoin</h2>
+            </div>
+            <span class="step-count">01 <small>/ 01</small></span>
+          </div>
+          <div class="field-grid">
+            <label class="field">
+              <span>Catégorie juridique <b>*</b></span>
+              <select required>
+                <option value="" selected disabled>
+                  Choisir une spécialité
+                </option>
+                <option>Droit de la famille / Divorce</option>
+                <option>Droit du travail</option>
+                <option>Droit des affaires</option>
+                <option>Immobilier</option>
+                <option>Pénal</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Ville <b>*</b></span>
+              <select required>
+                <option value="" selected disabled>Choisir une ville</option>
+                <option>Casablanca</option>
+                <option>Rabat</option>
+                <option>Marrakech</option>
+                <option>Tanger</option>
+              </select>
+            </label>
+          </div>
+          <label class="field">
+            <span>Description de votre dossier <b>*</b></span>
+            <textarea
+              rows="4"
+              minlength="20"
+              maxlength="5000"
+              placeholder="Expliquez brièvement votre situation et le conseil recherché…"
+            ></textarea>
+            <small class="field-hint"
+              >Dans l’application complète, la demande est partagée avec des
+              avocats ciblés.</small
+            >
+          </label>
+          <div class="form-divider"><span>VOS COORDONNÉES</span></div>
+          <label class="field">
+            <span>Nom complet <b>*</b></span>
+            <input
+              type="text"
+              autocomplete="name"
+              maxlength="120"
+              placeholder="Votre nom"
+            />
+          </label>
+          <div class="field-grid contact-grid">
+            <label class="field">
+              <span>Téléphone <b>*</b></span>
+              <input
+                type="tel"
+                autocomplete="tel"
+                maxlength="40"
+                placeholder="+212 6…"
+              />
+            </label>
+            <label class="field">
+              <span>E-mail <b>*</b></span>
+              <input
+                type="email"
+                autocomplete="email"
+                maxlength="320"
+                placeholder="vous@exemple.ma"
+              />
+            </label>
+          </div>
+          <label class="consent-line"
+            ><input type="checkbox" /><span
+              >J’accepte que mes informations soient transmises aux avocats
+              correspondant à ma demande.</span
+            ></label
+          >
+          <button class="primary-button" type="button">
+            Envoyer ma demande à un avocat <span aria-hidden="true">→</span>
+          </button>
+          <p class="static-hint">
+            Maquette uniquement : ce bouton ne transmet pas le formulaire.
+          </p>
+          <p class="secure-note">
+            <span aria-hidden="true">♢</span> Les demandes réelles sont traitées
+            par l’application full-stack.
+          </p>
+        </section>
+      </section>
+
+      <section
+        class="expertise-section section-wrap"
+        id="expertises"
+        aria-labelledby="expertise-title"
+      >
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow-small">UN ACCOMPAGNEMENT CIBLÉ</span>
+            <h2 id="expertise-title">Le bon regard, au bon endroit.</h2>
+          </div>
+          <p>
+            Choisissez le domaine juridique qui correspond à votre situation. La
+            version fonctionnelle oriente les demandes selon le domaine et la
+            ville.
+          </p>
+        </div>
+        <div class="expertise-list">
+          <a href="#demande"
+            ><span class="expertise-number">01</span
+            ><span>Droit de la famille / Divorce</span
+            ><b aria-hidden="true">→</b></a
+          >
+          <a href="#demande"
+            ><span class="expertise-number">02</span
+            ><span>Droit du travail</span><b aria-hidden="true">→</b></a
+          >
+          <a href="#demande"
+            ><span class="expertise-number">03</span
+            ><span>Droit des affaires</span><b aria-hidden="true">→</b></a
+          >
+          <a href="#demande"
+            ><span class="expertise-number">04</span><span>Immobilier</span
+            ><b aria-hidden="true">→</b></a
+          >
+          <a href="#demande"
+            ><span class="expertise-number">05</span><span>Pénal</span
+            ><b aria-hidden="true">→</b></a
+          >
+        </div>
+      </section>
+
+      <section
+        class="steps-section section-wrap"
+        id="comment-ca-marche"
+        aria-labelledby="steps-title"
+      >
+        <div class="center-heading">
+          <span class="eyebrow-small">SIMPLE, ET HUMAIN</span>
+          <h2 id="steps-title">Votre démarche en trois temps.</h2>
+        </div>
+        <div class="steps-grid">
+          <article>
+            <span class="step-number">01</span>
+            <div>
+              <h3>Décrivez votre besoin</h3>
+              <p>
+                Partagez les éléments essentiels de votre situation et indiquez
+                votre ville.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span class="step-number">02</span>
+            <div>
+              <h3>Votre demande est orientée</h3>
+              <p>
+                Elle apparaît aux avocats dont le domaine et la ville
+                correspondent.
+              </p>
+            </div>
+          </article>
+          <article>
+            <span class="step-number">03</span>
+            <div>
+              <h3>Échangez en confiance</h3>
+              <p>
+                Les coordonnées restent protégées jusqu’à leur déblocage dans
+                l’application complète.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="lawyer-section"
+        id="espace-avocat"
+        aria-labelledby="lawyer-title"
+      >
+        <div class="section-wrap">
+          <div class="section-heading lawyer-heading">
+            <div>
+              <span class="eyebrow-small">APERÇU ESPACE AVOCAT</span>
+              <h2 id="lawyer-title">Des demandes adaptées à votre pratique.</h2>
+            </div>
+            <p>
+              Exemple fictif d’interface : cette page statique ne permet pas de
+              se connecter ni de recevoir des leads réels.
+            </p>
+          </div>
+          <div class="dashboard-layout">
+            <aside class="profile-card">
+              <span class="profile-avatar" aria-hidden="true">AV</span>
+              <span class="profile-kicker">PROFIL DE DÉMONSTRATION</span>
+              <h3>Profil avocat</h3>
+              <span class="verified-badge"><span></span> Profil validé</span>
+              <div class="profile-rule"></div>
+              <span class="profile-label">VILLE CIBLÉE</span
+              ><strong class="profile-value">Casablanca</strong>
+              <span class="profile-label">SPÉCIALITÉ</span
+              ><strong class="profile-value">Droit des affaires</strong>
+              <span class="profile-foot"
+                >Exemple sans compte ni données réelles</span
+              >
+            </aside>
+
+            <div class="lead-column">
+              <div class="feed-title-row">
+                <div>
+                  <span class="eyebrow-small">NOUVELLES OPPORTUNITÉS</span>
+                  <h3>Demandes récentes <span class="count-pill">2</span></h3>
+                </div>
+                <span class="live-pill"><span></span> Aperçu</span>
+              </div>
+              <article class="lead-card">
+                <div class="lead-top">
+                  <span class="category-pill">Droit des affaires</span
+                  ><time>Exemple</time>
+                </div>
+                <span class="lead-city">⌖ Casablanca</span>
+                <p>
+                  Une petite entreprise recherche un conseil pour la révision
+                  d’un contrat commercial.
+                </p>
+                <div class="locked-contact">
+                  <span class="lock-symbol" aria-hidden="true">▣</span
+                  ><span
+                    ><strong>Coordonnées protégées</strong
+                    ><small
+                      >Les informations restent masquées dans cet aperçu.</small
+                    ></span
+                  >
+                </div>
+                <button class="outline-button" type="button">
+                  Débloquer les coordonnées <span aria-hidden="true">→</span>
+                </button>
+              </article>
+              <article class="lead-card">
+                <div class="lead-top">
+                  <span class="category-pill">Droit des affaires</span
+                  ><time>Exemple</time>
+                </div>
+                <span class="lead-city">⌖ Casablanca</span>
+                <p>
+                  Un entrepreneur souhaite obtenir des informations sur la
+                  création d’une société.
+                </p>
+                <div class="locked-contact">
+                  <span class="lock-symbol" aria-hidden="true">▣</span
+                  ><span
+                    ><strong>Coordonnées protégées</strong
+                    ><small
+                      >Les informations restent masquées dans cet aperçu.</small
+                    ></span
+                  >
+                </div>
+                <button class="outline-button" type="button">
+                  Débloquer les coordonnées <span aria-hidden="true">→</span>
+                </button>
+              </article>
+            </div>
+
+            <aside class="pricing-card" id="tarifs">
+              <span class="eyebrow-small">TARIF INDICATIF</span>
+              <h3>Abonnement avocat</h3>
+              <p class="price">
+                <strong>300</strong><span><b>DH</b><small>/ mois</small></span>
+              </p>
+              <ul>
+                <li>Accès aux coordonnées des leads</li>
+                <li>Demandes filtrées par ville et spécialité</li>
+                <li>Nouveaux dossiers dans votre fil</li>
+              </ul>
+              <button class="primary-button" type="button">
+                Simuler le déblocage <span aria-hidden="true">→</span>
+              </button>
+              <small class="pricing-note"
+                >Aucun paiement réel dans cette maquette.</small
+              >
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="admin-section section-wrap"
+        id="administration"
+        aria-labelledby="admin-title"
+      >
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow-small">APERÇU ADMINISTRATION</span>
+            <h2 id="admin-title">Validation des profils avocat.</h2>
+          </div>
+          <p>
+            Écran de démonstration uniquement : aucune validation ni activation
+            d’abonnement n’est enregistrée.
+          </p>
+        </div>
+        <div class="admin-panel">
+          <div class="admin-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Profil</th>
+                  <th>Ville · spécialité</th>
+                  <th>Validation</th>
+                  <th>Abonnement</th>
+                  <th>Actions (visuelles)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Profil avocat A</strong
+                    ><small>Compte de démonstration</small>
+                  </td>
+                  <td>Rabat<br /><small>Droit du travail</small></td>
+                  <td><span class="status status-pending">À valider</span></td>
+                  <td><span class="status status-off">Inactif</span></td>
+                  <td>
+                    <button class="table-button" type="button">
+                      Valider le profil
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Profil avocat B</strong
+                    ><small>Compte de démonstration</small>
+                  </td>
+                  <td>Casablanca<br /><small>Droit des affaires</small></td>
+                  <td><span class="status status-approved">Validé</span></td>
+                  <td><span class="status status-on">Démo active</span></td>
+                  <td>
+                    <button class="table-button" type="button">
+                      Réinitialiser la démo
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="admin-disclaimer">
+            Dans l’application complète, ces actions sont réservées aux
+            administrateurs authentifiés et leurs statuts sont enregistrés côté
+            serveur.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand brand-light" href="#accueil"
+        ><span class="brand-mark" aria-hidden="true">⚖</span
+        ><span class="brand-name">Mohami<span>Connect</span></span></a
+      >
+      <span>Une passerelle vers un accompagnement juridique au Maroc.</span>
+      <a href="#accueil">Retour en haut ↑</a>
+    </footer>
+  </body>
+</html>
