@@ -1,7 +1,6 @@
 import { and, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
-  CITIES,
   InsertLegalLead,
   InsertUser,
   LegalCategory,
@@ -154,8 +153,44 @@ export async function getLawyerVerificationQueue() {
     .orderBy(desc(lawyerProfiles.createdAt));
 }
 
+export async function getAdminLawyerProfiles() {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+
+  return db
+    .select({
+      profileId: lawyerProfiles.id,
+      lawyerName: users.name,
+      email: users.email,
+      city: lawyerProfiles.city,
+      specialty: lawyerProfiles.specialty,
+      verified: lawyerProfiles.verified,
+      subscriptionActive: lawyerProfiles.subscriptionActive,
+      createdAt: lawyerProfiles.createdAt,
+    })
+    .from(lawyerProfiles)
+    .innerJoin(users, eq(lawyerProfiles.userId, users.id))
+    .orderBy(desc(lawyerProfiles.createdAt));
+}
+
 export async function setLawyerVerified(profileId: number, verified: boolean) {
   const db = await getDb();
   if (!db) throw new Error("Database is not available");
-  return db.update(lawyerProfiles).set({ verified }).where(eq(lawyerProfiles.id, profileId));
+  return db
+    .update(lawyerProfiles)
+    .set(verified ? { verified: true } : { verified: false, subscriptionActive: false })
+    .where(eq(lawyerProfiles.id, profileId));
+}
+
+export async function setLawyerSubscriptionDemoState(profileId: number, active: boolean) {
+  const db = await getDb();
+  if (!db) throw new Error("Database is not available");
+  const [profile] = await db
+    .select({ verified: lawyerProfiles.verified })
+    .from(lawyerProfiles)
+    .where(eq(lawyerProfiles.id, profileId))
+    .limit(1);
+  if (!profile) throw new Error("Lawyer profile not found");
+  if (active && !profile.verified) throw new Error("Lawyer profile must be verified first");
+  await db.update(lawyerProfiles).set({ subscriptionActive: active }).where(eq(lawyerProfiles.id, profileId));
 }

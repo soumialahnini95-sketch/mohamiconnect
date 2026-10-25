@@ -1,6 +1,6 @@
 import { COOKIE_NAME } from "@shared/const";
 import { CITIES, LEGAL_CATEGORIES } from "../drizzle/schema";
-import { activateDemoSubscription, createLegalLead, getLawyerDashboard, getLawyerVerificationQueue, saveLawyerPreferences, setLawyerVerified } from "./db";
+import { activateDemoSubscription, createLegalLead, getAdminLawyerProfiles, getLawyerDashboard, getLawyerVerificationQueue, saveLawyerPreferences, setLawyerSubscriptionDemoState, setLawyerVerified } from "./db";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
@@ -89,6 +89,14 @@ export const appRouter = router({
         throw databaseError();
       }
     }),
+    profiles: adminProcedure.query(async () => {
+      try {
+        return await getAdminLawyerProfiles();
+      } catch (error) {
+        console.error("[Admin] Could not load lawyer profiles:", error);
+        throw databaseError();
+      }
+    }),
     verifyLawyer: adminProcedure
       .input(z.object({ profileId: z.number().int().positive(), verified: z.boolean() }))
       .mutation(async ({ input }) => {
@@ -97,6 +105,23 @@ export const appRouter = router({
           return { success: true } as const;
         } catch (error) {
           console.error("[Admin] Could not update lawyer verification:", error);
+          throw databaseError();
+        }
+      }),
+    setSubscriptionDemoState: adminProcedure
+      .input(z.object({ profileId: z.number().int().positive(), active: z.boolean() }))
+      .mutation(async ({ input }) => {
+        try {
+          await setLawyerSubscriptionDemoState(input.profileId, input.active);
+          return { active: input.active } as const;
+        } catch (error) {
+          console.error("[Admin] Could not update demo subscription:", error);
+          if (error instanceof Error && error.message === "Lawyer profile must be verified first") {
+            throw new TRPCError({ code: "PRECONDITION_FAILED", message: "Validez le profil avocat avant de simuler le paiement." });
+          }
+          if (error instanceof Error && error.message === "Lawyer profile not found") {
+            throw new TRPCError({ code: "NOT_FOUND", message: "Profil avocat introuvable." });
+          }
           throw databaseError();
         }
       }),

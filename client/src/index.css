@@ -442,3 +442,22 @@ button { color: inherit; }
 
 .admin-header-link { color: #718c78; font-size: 9px; font-weight: 600; text-decoration: underline; text-decoration-color: #c7d5c8; text-underline-offset: 3px; }
 @media (max-width: 620px) { .admin-header-link { font-size: 8px; } }
+
+.admin-lawyer-card { align-items: flex-start; }
+.admin-lawyer-card .verification-card-main { flex: 1; }
+.admin-status-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+.admin-status { display: inline-flex; align-items: center; gap: 5px; border-radius: 16px; padding: 5px 8px; font-size: 8px; font-weight: 600; }
+.status-verified, .status-paid { color: #4d775a; background: #edf5ed; }
+.status-pending { color: #8f704d; background: #f8f2e8; }
+.status-unpaid { color: #7e8982; background: #f1f3f0; }
+.admin-lawyer-actions { min-width: 230px; display: flex; justify-content: flex-end; }
+.simulate-payment-button { background: #355e4a; }
+.simulate-payment-button:hover { background: #284c3a; }
+.reset-payment-button { min-height: 36px; padding: 9px 11px; border: 1px solid #e3d8cd; border-radius: 4px; background: #fff; color: #856e5d; font-size: 9px; font-weight: 600; cursor: pointer; }
+.reset-payment-button:hover { background: #fcf8f4; border-color: #c9ac94; }
+.reset-payment-button:disabled, .simulate-payment-button:disabled { opacity: .6; cursor: wait; }
+@media (max-width: 620px) {
+  .admin-lawyer-card { align-items: stretch; }
+  .admin-lawyer-actions { min-width: 0; width: 100%; }
+  .admin-lawyer-actions > button { width: 100%; }
+}
