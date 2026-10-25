@@ -1,14 +1,56 @@
 # MohamiConnect
 
-React / Express / tRPC / Drizzle starter, adapted from the Sandbox web-db-user template.
+Application juridique full-stack : React + TypeScript côté client, Express + tRPC côté serveur et MySQL/Drizzle pour les données. Le dépôt GitHub privé est le code source du projet; les secrets et les données clients ne sont pas stockés dans Git.
 
-- `pnpm dev`: development server; honors `PORT` (default 3000).
-- `pnpm build` / `pnpm start`: build and serve `dist/index.js` and `dist/public/`.
-- `pnpm db:migrate`: apply checked-in migrations. `pnpm db:push`: generate and apply new schema changes.
-- `pnpm check` / `pnpm test`: types and application tests.
+## Ouvrir et modifier le projet dans Visual Studio Code
 
-Start with the Webdev skill's default-template guide. Platform login, storage, payments and service contracts live in its shared references; read the relevant capability before extending its helper.
+Prérequis : Git, Node.js 22 et Corepack. Le projet est épinglé sur pnpm 10.18.0.
 
-`server/_core/publicConfig.ts` exposes only named public runtime values. Private keys stay server-side. The platform serves managed `/manus-storage/` assets; the application does not register a second proxy.
+```bash
+git clone https://github.com/soumialahnini95-sketch/mohamiconnect.git
+cd mohamiconnect
+corepack enable
+corepack prepare pnpm@10.18.0 --activate
+pnpm install --frozen-lockfile
+code .
+```
 
-Platform configuration is readable and editable through `webdev.config`. Default settings are initial values, not enforced constraints. The agent may modify the files, commands and configuration or follow the flexible guide for another stack.
+Si la commande `code .` n’est pas installée, ouvrez Visual Studio Code et choisissez **Fichier → Ouvrir un dossier…**, puis le dossier `mohamiconnect`.
+
+## Exécution locale complète
+
+Le clone GitHub ne récupère ni les secrets de l’hébergement géré ni sa base de données. Pour faire fonctionner localement l’authentification et les demandes, créez un MySQL de développement séparé et renseignez les valeurs locales nécessaires dans `.env` :
+
+```bash
+cp .env.example .env
+```
+
+Sous PowerShell : `Copy-Item .env.example .env`. Complétez au minimum `DATABASE_URL`, `MANUS_PROJECT_ID`, `MANUS_OAUTH_PORTAL_URL`, `MANUS_OAUTH_API_URL` et `MANUS_JWT_SECRET`. `OWNER_OPEN_ID` permet de reconnaître le compte administrateur du projet; les clés de services listées dans `.env.example` ne sont nécessaires que si ces services sont utilisés. L’URL de retour OAuth locale (`http://localhost:3000/api/oauth/callback`) doit être autorisée par la configuration d’authentification utilisée.
+
+Ne mettez jamais les valeurs réelles dans GitHub. Le fichier `.env` est ignoré par Git; conservez les secrets dans ce fichier local ou dans le gestionnaire de secrets de l’hébergeur. N’exécutez les migrations que sur une base de développement dédiée, jamais sur une base de production ou de données clients.
+
+```bash
+pnpm db:migrate   # applique les migrations versionnées à la base indiquée par DATABASE_URL
+pnpm dev           # lance le serveur sur http://localhost:3000
+```
+
+Sans MySQL et configuration OAuth valides, l’interface peut être modifiée et compilée, mais la connexion et la persistance des demandes ne fonctionneront pas localement.
+
+## Vérifications et production
+
+```bash
+pnpm check
+pnpm test
+pnpm build
+pnpm start
+```
+
+Le `Dockerfile` fournit un point de départ pour un hébergeur compatible avec Node/Docker. Le dépôt GitHub conserve le code, mais GitHub Pages ne peut pas exécuter le serveur Express, l’authentification ni MySQL. L’hébergement complet exige donc un serveur Node/Docker, une base MySQL et les variables d’environnement sécurisées. Le projet MohamiConnect existant continue de fournir son Preview et son runtime géré; publier le code sur GitHub ne publie pas à lui seul un site sur GitHub Pages.
+
+## Structure
+
+- `client/` : interface React, pages, composants et styles.
+- `server/` : Express, routes tRPC, OAuth et accès MySQL.
+- `shared/` : constantes et types partagés entre client et serveur.
+- `drizzle/` : schéma et migrations de base de données.
+- `Dockerfile` : build et démarrage du serveur de production.
