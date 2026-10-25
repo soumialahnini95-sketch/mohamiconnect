@@ -1,0 +1,1 @@
+ALTER TABLE `lawyer_profiles` ADD `verified` boolean DEFAULT false NOT NULL;
