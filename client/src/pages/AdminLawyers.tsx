@@ -34,7 +34,7 @@ export default function AdminLawyers() {
 
   if (auth.loading) return <div className="loading-page"><span className="button-spinner"/><span>Chargement…</span></div>;
   if (!auth.isAuthenticated) return (
-    <main className="lawyer-login-page"><header className="site-header dashboard-header"><a className="brand-home" href="/"><BrandMark /></a></header><section className="login-panel"><span className="login-icon"><ShieldAlert size={23}/></span><h1>Accès administrateur</h1><p>Connectez-vous avec le compte administrateur autorisé pour examiner les profils et les abonnements de démonstration.</p><button className="submit-button" onClick={() => startLogin()}>Se connecter avec Manus</button></section></main>
+    <main className="lawyer-login-page"><header className="site-header dashboard-header"><a className="brand-home" href="/"><BrandMark /></a></header><section className="login-panel"><span className="login-icon"><ShieldAlert size={23}/></span><h1>Accès administrateur</h1><p>Connectez-vous avec le compte administrateur autorisé pour examiner les profils et les abonnements de démonstration.</p><button className="submit-button" onClick={() => startLogin()}>Se connecter</button></section></main>
   );
   if (auth.user?.role !== "admin") return (
     <main className="lawyer-login-page"><header className="site-header dashboard-header"><a className="brand-home" href="/"><BrandMark /></a></header><section className="login-panel"><span className="login-icon"><ShieldAlert size={23}/></span><h1>Cette page est réservée.</h1><p>Seul un administrateur MohamiConnect peut valider les profils et simuler l’état d’abonnement.</p><a className="submit-button admin-back-button" href="/avocat"><ArrowLeft size={16}/> Retour à mon espace</a></section></main>

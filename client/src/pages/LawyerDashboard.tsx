@@ -18,8 +18,8 @@ function LoginGate() {
         <span className="login-icon"><BriefcaseBusiness size={24} /></span>
         <span className="section-kicker">ESPACE PROFESSIONNEL</span>
         <h1>Votre expertise mérite d’être trouvée.</h1>
-        <p>Connectez-vous avec votre compte Manus pour configurer votre profil avocat et consulter les demandes qui correspondent à votre pratique.</p>
-        <button className="submit-button" onClick={() => startLogin()}>Se connecter avec Manus <ArrowRight size={17} /></button>
+        <p>Connectez-vous pour configurer votre profil avocat et consulter les demandes qui correspondent à votre pratique.</p>
+        <button className="submit-button" onClick={() => startLogin()}>Se connecter <ArrowRight size={17} /></button>
         <div className="login-privacy"><ShieldCheck size={15} /> Connexion sécurisée · Accès réservé aux comptes connectés</div>
       </section>
     </main>
