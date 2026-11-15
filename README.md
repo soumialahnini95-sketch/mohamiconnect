@@ -49,7 +49,7 @@ Le `Dockerfile` fournit un point de départ pour un hébergeur compatible avec N
 
 ## Copie statique HTML/CSS
 
-La maquette autonome se trouve dans `docs/index.html`, avec ses styles dans `docs/styles.css`. Ouvrez `docs/index.html` dans Visual Studio Code et prévisualisez-le dans un navigateur. Elle peut être publiée comme site statique GitHub Pages en sélectionnant la branche `main` et le dossier `/docs`, si Pages est disponible pour ce dépôt. Cette copie est visuelle uniquement : elle n’envoie pas le formulaire et ne fournit ni authentification, ni espace admin sécurisé, ni base de données. L’application complète reste dans `client/` et `server/`.
+La maquette autonome se trouve dans `docs/index.html`, avec ses styles dans `docs/styles.css` et le filtrage fictif par ville/catégorie dans `docs/script.js`. Ouvrez `docs/index.html` dans Visual Studio Code et prévisualisez-le dans un navigateur. Les filtres s’exécutent uniquement dans la page et utilisent des prospects de démonstration. La maquette peut être publiée comme site statique GitHub Pages en sélectionnant la branche `main` et le dossier `/docs`, si Pages est disponible pour ce dépôt. Cette copie n’envoie pas le formulaire et ne fournit ni authentification, ni espace admin sécurisé, ni base de données. L’application complète reste dans `client/` et `server/`.
 
 ## Structure
 

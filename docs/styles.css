@@ -685,6 +685,82 @@ textarea:focus-visible {
     400 20px Georgia,
     serif;
 }
+.lead-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  color: #66766c;
+  font-size: 9px;
+  font-weight: 700;
+}
+.filter-field select {
+  width: 100%;
+  min-width: 0;
+  height: 35px;
+  border: 1px solid #dfe6de;
+  border-radius: 5px;
+  padding: 0 8px;
+  background: #fff;
+  color: #42584b;
+  font-size: 9px;
+}
+.filter-reset {
+  min-height: 35px;
+  border: 0;
+  padding: 0 3px;
+  background: transparent;
+  color: #527361;
+  font-size: 9px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.filter-reset:disabled {
+  color: #a0aaa2;
+  cursor: default;
+  text-decoration: none;
+}
+.filter-summary {
+  margin: 0 0 10px;
+  color: #87938b;
+  font-size: 9px;
+  line-height: 1.5;
+}
+.lead-list {
+  display: grid;
+  gap: 0;
+}
+.lead-card[hidden],
+.empty-state[hidden] {
+  display: none !important;
+}
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 11px;
+  padding: 20px 15px;
+  border: 1px dashed #d8dfd8;
+  border-radius: 7px;
+  background: #fafbf9;
+  color: #65776b;
+  text-align: center;
+  font-size: 11px;
+}
+.empty-state span {
+  color: #89958d;
+  font-size: 9px;
+  line-height: 1.5;
+}
 .count-pill {
   display: inline-grid;
   min-width: 21px;
@@ -1169,6 +1245,14 @@ td small {
   }
   .profile-card {
     grid-row: auto;
+  }
+  .lead-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .filter-reset {
+    grid-column: 1 / -1;
+    justify-self: start;
+    min-height: 25px;
   }
   .pricing-card {
     grid-column: auto;

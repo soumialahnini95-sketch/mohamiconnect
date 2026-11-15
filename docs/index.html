@@ -10,6 +10,7 @@
     />
     <title>MohamiConnect — Trouver un avocat au Maroc</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -303,56 +304,242 @@
               <div class="feed-title-row">
                 <div>
                   <span class="eyebrow-small">NOUVELLES OPPORTUNITÉS</span>
-                  <h3>Demandes récentes <span class="count-pill">2</span></h3>
+                  <h3>
+                    Demandes récentes
+                    <span
+                      class="count-pill"
+                      id="lead-count"
+                      aria-label="Nombre de prospects visibles"
+                      >6</span
+                    >
+                  </h3>
                 </div>
                 <span class="live-pill"><span></span> Aperçu</span>
               </div>
-              <article class="lead-card">
-                <div class="lead-top">
-                  <span class="category-pill">Droit des affaires</span
-                  ><time>Exemple</time>
-                </div>
-                <span class="lead-city">⌖ Casablanca</span>
-                <p>
-                  Une petite entreprise recherche un conseil pour la révision
-                  d’un contrat commercial.
-                </p>
-                <div class="locked-contact">
-                  <span class="lock-symbol" aria-hidden="true">▣</span
-                  ><span
-                    ><strong>Coordonnées protégées</strong
-                    ><small
-                      >Les informations restent masquées dans cet aperçu.</small
-                    ></span
+              <div
+                class="lead-filters"
+                role="group"
+                aria-label="Filtres des prospects"
+              >
+                <label class="filter-field">
+                  <span>Ville</span>
+                  <select id="lead-city-filter" aria-controls="lead-list">
+                    <option value="all">Toutes les villes</option>
+                    <option value="Casablanca">Casablanca</option>
+                    <option value="Rabat">Rabat</option>
+                    <option value="Marrakech">Marrakech</option>
+                    <option value="Tanger">Tanger</option>
+                  </select>
+                </label>
+                <label class="filter-field">
+                  <span>Catégorie juridique</span>
+                  <select id="lead-category-filter" aria-controls="lead-list">
+                    <option value="all">Toutes les catégories</option>
+                    <option value="Droit de la famille / Divorce">
+                      Droit de la famille / Divorce
+                    </option>
+                    <option value="Droit du travail">Droit du travail</option>
+                    <option value="Droit des affaires">
+                      Droit des affaires
+                    </option>
+                    <option value="Immobilier">Immobilier</option>
+                    <option value="Pénal">Pénal</option>
+                  </select>
+                </label>
+                <button
+                  class="filter-reset"
+                  id="lead-filter-reset"
+                  type="button"
+                >
+                  Réinitialiser
+                </button>
+              </div>
+              <p
+                class="filter-summary"
+                id="lead-filter-summary"
+                aria-live="polite"
+              >
+                6 prospects de démonstration affichés.
+              </p>
+              <div class="lead-list" id="lead-list">
+                <article
+                  class="lead-card"
+                  data-city="Casablanca"
+                  data-category="Droit des affaires"
+                >
+                  <div class="lead-top">
+                    <span class="category-pill">Droit des affaires</span
+                    ><time>Exemple</time>
+                  </div>
+                  <span class="lead-city">⌖ Casablanca</span>
+                  <p>
+                    Une petite entreprise recherche un conseil pour la révision
+                    d’un contrat commercial.
+                  </p>
+                  <div class="locked-contact">
+                    <span class="lock-symbol" aria-hidden="true">▣</span
+                    ><span
+                      ><strong>Coordonnées protégées</strong
+                      ><small
+                        >Les informations restent masquées dans cet
+                        aperçu.</small
+                      ></span
+                    >
+                  </div>
+                  <button class="outline-button" type="button">
+                    Débloquer les coordonnées <span aria-hidden="true">→</span>
+                  </button>
+                </article>
+                <article
+                  class="lead-card"
+                  data-city="Casablanca"
+                  data-category="Droit des affaires"
+                >
+                  <div class="lead-top">
+                    <span class="category-pill">Droit des affaires</span
+                    ><time>Exemple</time>
+                  </div>
+                  <span class="lead-city">⌖ Casablanca</span>
+                  <p>
+                    Un entrepreneur souhaite obtenir des informations sur la
+                    création d’une société.
+                  </p>
+                  <div class="locked-contact">
+                    <span class="lock-symbol" aria-hidden="true">▣</span
+                    ><span
+                      ><strong>Coordonnées protégées</strong
+                      ><small
+                        >Les informations restent masquées dans cet
+                        aperçu.</small
+                      ></span
+                    >
+                  </div>
+                  <button class="outline-button" type="button">
+                    Débloquer les coordonnées <span aria-hidden="true">→</span>
+                  </button>
+                </article>
+                <article
+                  class="lead-card"
+                  data-city="Marrakech"
+                  data-category="Droit de la famille / Divorce"
+                >
+                  <div class="lead-top">
+                    <span class="category-pill"
+                      >Droit de la famille / Divorce</span
+                    >
+                    <time>Exemple</time>
+                  </div>
+                  <span class="lead-city">⌖ Marrakech</span>
+                  <p>
+                    Une personne cherche des conseils pour organiser une
+                    procédure de divorce.
+                  </p>
+                  <div class="locked-contact">
+                    <span class="lock-symbol" aria-hidden="true">▣</span>
+                    <span
+                      ><strong>Coordonnées protégées</strong
+                      ><small
+                        >Les informations restent masquées dans cet
+                        aperçu.</small
+                      ></span
+                    >
+                  </div>
+                  <button class="outline-button" type="button">
+                    Débloquer les coordonnées <span aria-hidden="true">→</span>
+                  </button>
+                </article>
+                <article
+                  class="lead-card"
+                  data-city="Rabat"
+                  data-category="Droit du travail"
+                >
+                  <div class="lead-top">
+                    <span class="category-pill">Droit du travail</span>
+                    <time>Exemple</time>
+                  </div>
+                  <span class="lead-city">⌖ Rabat</span>
+                  <p>
+                    Un salarié souhaite comprendre ses options après un
+                    changement de contrat.
+                  </p>
+                  <div class="locked-contact">
+                    <span class="lock-symbol" aria-hidden="true">▣</span>
+                    <span
+                      ><strong>Coordonnées protégées</strong
+                      ><small
+                        >Les informations restent masquées dans cet
+                        aperçu.</small
+                      ></span
+                    >
+                  </div>
+                  <button class="outline-button" type="button">
+                    Débloquer les coordonnées <span aria-hidden="true">→</span>
+                  </button>
+                </article>
+                <article
+                  class="lead-card"
+                  data-city="Casablanca"
+                  data-category="Immobilier"
+                >
+                  <div class="lead-top">
+                    <span class="category-pill">Immobilier</span>
+                    <time>Exemple</time>
+                  </div>
+                  <span class="lead-city">⌖ Casablanca</span>
+                  <p>
+                    Une famille demande un accompagnement pour un litige autour
+                    d’un bail.
+                  </p>
+                  <div class="locked-contact">
+                    <span class="lock-symbol" aria-hidden="true">▣</span>
+                    <span
+                      ><strong>Coordonnées protégées</strong
+                      ><small
+                        >Les informations restent masquées dans cet
+                        aperçu.</small
+                      ></span
+                    >
+                  </div>
+                  <button class="outline-button" type="button">
+                    Débloquer les coordonnées <span aria-hidden="true">→</span>
+                  </button>
+                </article>
+                <article
+                  class="lead-card"
+                  data-city="Tanger"
+                  data-category="Pénal"
+                >
+                  <div class="lead-top">
+                    <span class="category-pill">Pénal</span>
+                    <time>Exemple</time>
+                  </div>
+                  <span class="lead-city">⌖ Tanger</span>
+                  <p>
+                    Une personne recherche un conseil après avoir reçu une
+                    convocation.
+                  </p>
+                  <div class="locked-contact">
+                    <span class="lock-symbol" aria-hidden="true">▣</span>
+                    <span
+                      ><strong>Coordonnées protégées</strong
+                      ><small
+                        >Les informations restent masquées dans cet
+                        aperçu.</small
+                      ></span
+                    >
+                  </div>
+                  <button class="outline-button" type="button">
+                    Débloquer les coordonnées <span aria-hidden="true">→</span>
+                  </button>
+                </article>
+                <div class="empty-state" id="empty-state" hidden role="status">
+                  <strong>Aucun prospect ne correspond à ces filtres.</strong>
+                  <span
+                    >Essayez une autre ville ou une autre catégorie
+                    juridique.</span
                   >
                 </div>
-                <button class="outline-button" type="button">
-                  Débloquer les coordonnées <span aria-hidden="true">→</span>
-                </button>
-              </article>
-              <article class="lead-card">
-                <div class="lead-top">
-                  <span class="category-pill">Droit des affaires</span
-                  ><time>Exemple</time>
-                </div>
-                <span class="lead-city">⌖ Casablanca</span>
-                <p>
-                  Un entrepreneur souhaite obtenir des informations sur la
-                  création d’une société.
-                </p>
-                <div class="locked-contact">
-                  <span class="lock-symbol" aria-hidden="true">▣</span
-                  ><span
-                    ><strong>Coordonnées protégées</strong
-                    ><small
-                      >Les informations restent masquées dans cet aperçu.</small
-                    ></span
-                  >
-                </div>
-                <button class="outline-button" type="button">
-                  Débloquer les coordonnées <span aria-hidden="true">→</span>
-                </button>
-              </article>
+              </div>
             </div>
 
             <aside class="pricing-card" id="tarifs">
