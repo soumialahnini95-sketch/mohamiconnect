@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#173c36" />
+    <meta
+      name="description"
+      content="Tableau de bord administrateur de démonstration MohamiConnect."
+    />
+    <title>Administration démo — MohamiConnect</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="demo-store.js" defer></script>
+    <script src="admin.js" defer></script>
+  </head>
+  <body class="admin-demo-page">
+    <a class="skip-link" href="#admin-main">Aller au contenu</a>
+
+    <div class="static-notice" role="note">
+      <strong>Administration de démonstration uniquement.</strong>
+      Les états résident dans le navigateur; aucune authentification, donnée
+      réelle ou transaction n’est utilisée.
+    </div>
+
+    <header class="admin-header-bar">
+      <a class="brand" href="index.html" aria-label="MohamiConnect, accueil">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" fill="none">
+            <path
+              d="M7 36V21.2C7 12.82 13.72 6 22 6s15 6.82 15 15.2V36"
+              stroke="currentColor"
+              stroke-width="2.2"
+            />
+            <path
+              d="M13 36V22a9 9 0 0 1 18 0v14M4 36h36M22 13v16m-7-8h14m-10.5 0-4 6h8l-4-6Zm7 0-4 6h8l-4-6Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <span class="brand-name">Mohami<span>Connect</span></span>
+      </a>
+      <nav class="admin-top-nav" aria-label="Navigation administrateur">
+        <a href="index.html#espace-avocat">Aperçu avocat</a>
+        <a class="admin-nav-current" href="admin.html" aria-current="page"
+          >Administration démo</a
+        >
+      </nav>
+    </header>
+
+    <main class="admin-main" id="admin-main">
+      <section class="admin-page-heading" aria-labelledby="admin-page-title">
+        <div>
+          <span class="eyebrow-small">OUTIL STATIQUE · DONNÉES FICTIVES</span>
+          <h1 id="admin-page-title">Profils &amp; abonnements.</h1>
+          <p>
+            Validez des avocats de démonstration, simulez leur abonnement et
+            suivez les indicateurs mis à jour dans ce navigateur.
+          </p>
+        </div>
+        <div class="admin-heading-actions">
+          <a class="admin-secondary-link" href="index.html#espace-avocat"
+            >← Voir l’aperçu avocat</a
+          >
+          <button
+            class="admin-reset-button"
+            id="admin-reset-demo"
+            type="button"
+          >
+            Réinitialiser la démo
+          </button>
+        </div>
+      </section>
+
+      <p class="admin-storage-banner" id="admin-storage-status" role="status">
+        Chargement du stockage local…
+      </p>
+
+      <section
+        class="admin-stats-grid"
+        aria-label="Statistiques de démonstration"
+      >
+        <article class="admin-stat-card">
+          <span>Avocats inscrits</span>
+          <strong id="stat-total-lawyers">0</strong>
+          <small>Profils fictifs dans la maquette</small>
+        </article>
+        <article class="admin-stat-card">
+          <span>Profils validés</span>
+          <strong id="stat-verified-lawyers">0</strong>
+          <small>Accès au fil de démonstration</small>
+        </article>
+        <article class="admin-stat-card admin-stat-pending">
+          <span>En attente</span>
+          <strong id="stat-pending-lawyers">0</strong>
+          <small>À examiner dans cette maquette</small>
+        </article>
+        <article class="admin-stat-card">
+          <span>Abonnements simulés</span>
+          <strong id="stat-active-subscriptions">0</strong>
+          <small>Activés après validation</small>
+        </article>
+        <article class="admin-stat-card admin-stat-revenue">
+          <span>Montant mensuel simulé</span>
+          <strong id="stat-monthly-amount">0 DH</strong>
+          <small>300 DH / abonnement actif</small>
+        </article>
+      </section>
+
+      <section class="admin-list-panel" aria-labelledby="lawyer-list-title">
+        <div class="admin-table-heading">
+          <div>
+            <span class="eyebrow-small">GESTION DES PROFILS</span>
+            <h2 id="lawyer-list-title">Avocats de démonstration</h2>
+            <p id="admin-result-count" aria-live="polite">0 profil affiché</p>
+          </div>
+          <div class="admin-filter-controls" aria-label="Filtres des profils">
+            <label class="admin-filter-field">
+              <span>Rechercher</span>
+              <input
+                type="search"
+                id="admin-search"
+                placeholder="Nom, ville ou spécialité"
+                autocomplete="off"
+              />
+            </label>
+            <label class="admin-filter-field">
+              <span>Ville</span>
+              <select id="admin-city-filter">
+                <option value="all">Toutes</option>
+                <option value="Casablanca">Casablanca</option>
+                <option value="Rabat">Rabat</option>
+                <option value="Marrakech">Marrakech</option>
+                <option value="Tanger">Tanger</option>
+              </select>
+            </label>
+            <label class="admin-filter-field">
+              <span>Statut</span>
+              <select id="admin-status-filter">
+                <option value="all">Tous</option>
+                <option value="pending">À valider</option>
+                <option value="verified">Validé</option>
+                <option value="subscribed">Abonnement actif</option>
+              </select>
+            </label>
+            <button
+              class="admin-filter-reset"
+              id="admin-reset-filters"
+              type="button"
+            >
+              Effacer les filtres
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-table-scroll">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th scope="col">Profil avocat</th>
+                <th scope="col">Ville · spécialité</th>
+                <th scope="col">Validation</th>
+                <th scope="col">Abonnement</th>
+                <th scope="col">Action de démonstration</th>
+              </tr>
+            </thead>
+            <tbody id="admin-lawyer-rows"></tbody>
+          </table>
+          <div class="admin-empty-state" id="admin-empty-state" hidden>
+            <strong>Aucun profil ne correspond.</strong>
+            <span>Changez les filtres ou réinitialisez la recherche.</span>
+          </div>
+        </div>
+
+        <p
+          class="admin-action-status"
+          id="admin-action-status"
+          role="status"
+          aria-live="polite"
+        >
+          Les boutons ci-dessus ne font que modifier l’état fictif du
+          navigateur.
+        </p>
+      </section>
+
+      <section class="admin-safety-note" aria-labelledby="admin-safety-title">
+        <span class="admin-safety-mark" aria-hidden="true">i</span>
+        <div>
+          <h2 id="admin-safety-title">À propos de cette maquette</h2>
+          <p>
+            LocalStorage persiste sur cette origine et ce navigateur seulement.
+            Il peut être consulté ou modifié par toute personne utilisant le
+            navigateur : ce tableau n’est donc ni privé ni sécurisé. Les profils
+            sont fictifs; aucune coordonnée client n’est stockée et aucun
+            paiement réel n’est effectué. Pour une véritable administration,
+            utilisez la version full-stack avec authentification et base de
+            données.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer admin-page-footer">
+      <a class="brand brand-light" href="index.html"
+        ><span class="brand-mark" aria-hidden="true">⚖</span
+        ><span class="brand-name">Mohami<span>Connect</span></span></a
+      >
+      <span>Tableau statique de démonstration · aucun paiement réel.</span>
+      <a href="index.html">Retour à l’aperçu ↑</a>
+    </footer>
+  </body>
+</html>

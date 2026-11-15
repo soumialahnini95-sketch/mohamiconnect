@@ -47,15 +47,23 @@ pnpm start
 
 Le `Dockerfile` fournit un point de départ pour un hébergeur compatible avec Node/Docker. Le dépôt GitHub conserve le code, mais GitHub Pages ne peut pas exécuter le serveur Express, l’authentification ni MySQL. L’hébergement complet exige donc un serveur Node/Docker, une base MySQL et les variables d’environnement sécurisées. Le projet MohamiConnect existant continue de fournir son Preview et son runtime géré; publier le code sur GitHub ne publie pas à lui seul un site sur GitHub Pages.
 
-## Copie statique HTML/CSS
+## Maquette statique, administration et LocalStorage
 
-La maquette autonome se trouve dans `docs/index.html`, avec ses styles dans `docs/styles.css` et le filtrage fictif par ville/catégorie dans `docs/script.js`. Ouvrez `docs/index.html` dans Visual Studio Code et prévisualisez-le dans un navigateur. Les filtres s’exécutent uniquement dans la page et utilisent des prospects de démonstration. La maquette peut être publiée comme site statique GitHub Pages en sélectionnant la branche `main` et le dossier `/docs`, si Pages est disponible pour ce dépôt. Cette copie n’envoie pas le formulaire et ne fournit ni authentification, ni espace admin sécurisé, ni base de données. L’application complète reste dans `client/` et `server/`.
+La maquette se trouve dans `docs/index.html`; son administration statique complète est dans `docs/admin.html`. Les styles et scripts locaux sont `docs/styles.css`, `docs/script.js`, `docs/demo-store.js` et `docs/admin.js`. Ouvrez `docs/` avec Visual Studio Code. Pour garantir un même `origin` et un LocalStorage partagé entre les pages, utilisez l’extension Live Server ou lancez un serveur local :
+
+```bash
+python -m http.server 5500 --directory docs
+```
+
+Ouvrez ensuite `http://localhost:5500/` pour l’aperçu ou `http://localhost:5500/admin.html` pour le tableau administrateur. La clé versionnée `mohamiconnect.demo-state.v1` conserve uniquement les états des profils fictifs (validé/en attente et abonnement démo actif/inactif) dans le navigateur courant. Les changements persistent après actualisation et sont synchronisés entre les pages ouvertes sur la même origine. La page admin comprend un bouton **Réinitialiser la démo**; dans la console du navigateur, l’équivalent est `localStorage.removeItem("mohamiconnect.demo-state.v1"); location.reload();`.
+
+LocalStorage n’est ni un stockage sécurisé ni un contrôle d’accès : n’y mettez jamais de coordonnées client, mot de passe, profil réel ou statut de paiement réel. Tout visiteur peut consulter/modifier ces valeurs; elles ne sont pas partagées entre appareils et aucun montant n’est prélevé. Seule l’application full-stack fournit une authentification, une validation admin et une persistance serveur fiables. GitHub Pages peut publier la maquette statique depuis le dossier `/docs` si cette option est disponible pour le dépôt, mais ne fait pas fonctionner le backend.
 
 ## Structure
 
 - `client/` : interface React, pages, composants et styles.
 - `server/` : Express, routes tRPC, OAuth et accès MySQL.
-- `docs/` : aperçu HTML/CSS statique, sans backend.
+- `docs/` : maquette HTML/CSS/JavaScript statique et administration de démonstration.
 - `shared/` : constantes et types partagés entre client et serveur.
 - `drizzle/` : schéma et migrations de base de données.
 - `Dockerfile` : build et démarrage du serveur de production.

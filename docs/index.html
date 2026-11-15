@@ -10,15 +10,16 @@
     />
     <title>MohamiConnect — Trouver un avocat au Maroc</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="demo-store.js" defer></script>
     <script src="script.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenu">Aller au contenu</a>
 
     <div class="static-notice" role="note">
-      <strong>Version HTML/CSS statique.</strong>
-      Cette maquette n’envoie ni n’enregistre aucune donnée. Pour les demandes
-      réelles et l’accès sécurisé, utilisez l’application complète.
+      <strong>Maquette statique.</strong>
+      Les statuts fictifs avocat/admin sont conservés dans le LocalStorage de ce
+      navigateur; le formulaire client n’envoie ni n’enregistre de données.
     </div>
 
     <header class="site-header" id="accueil">
@@ -287,16 +288,36 @@
           <div class="dashboard-layout">
             <aside class="profile-card">
               <span class="profile-avatar" aria-hidden="true">AV</span>
-              <span class="profile-kicker">PROFIL DE DÉMONSTRATION</span>
-              <h3>Profil avocat</h3>
-              <span class="verified-badge"><span></span> Profil validé</span>
+              <span class="profile-kicker">PROFIL FICTIF</span>
+              <h3 id="demo-lawyer-name">Nadia El Idrissi</h3>
+              <span
+                class="verified-badge profile-status-pending"
+                id="demo-lawyer-status"
+              >
+                <span aria-hidden="true"></span>
+                <span class="status-text" id="demo-lawyer-status-label"
+                  >À valider</span
+                >
+              </span>
               <div class="profile-rule"></div>
+              <label class="profile-demo-picker">
+                <span class="profile-label">PROFIL AFFICHÉ</span>
+                <select
+                  id="demo-lawyer-select"
+                  class="profile-demo-select"
+                  aria-label="Choisir un profil avocat de démonstration"
+                ></select>
+              </label>
               <span class="profile-label">VILLE CIBLÉE</span
-              ><strong class="profile-value">Casablanca</strong>
+              ><strong class="profile-value" id="demo-lawyer-city"
+                >Casablanca</strong
+              >
               <span class="profile-label">SPÉCIALITÉ</span
-              ><strong class="profile-value">Droit des affaires</strong>
-              <span class="profile-foot"
-                >Exemple sans compte ni données réelles</span
+              ><strong class="profile-value" id="demo-lawyer-specialty"
+                >Droit des affaires</strong
+              >
+              <span class="profile-foot" id="demo-lawyer-plan"
+                >Abonnement démo inactif</span
               >
             </aside>
 
@@ -317,9 +338,23 @@
                 <span class="live-pill"><span></span> Aperçu</span>
               </div>
               <div
+                class="lawyer-approval-notice"
+                id="lawyer-approval-notice"
+                role="status"
+              >
+                <strong>Profil en attente de validation.</strong>
+                <span
+                  >Validez ce profil dans l’administration de démonstration pour
+                  afficher le fil fictif.</span
+                >
+                <a href="admin.html">Ouvrir l’administration →</a>
+              </div>
+              <div
                 class="lead-filters"
+                id="lead-filters"
                 role="group"
                 aria-label="Filtres des prospects"
+                hidden
               >
                 <label class="filter-field">
                   <span>Ville</span>
@@ -358,10 +393,11 @@
                 class="filter-summary"
                 id="lead-filter-summary"
                 aria-live="polite"
+                hidden
               >
                 6 prospects de démonstration affichés.
               </p>
-              <div class="lead-list" id="lead-list">
+              <div class="lead-list" id="lead-list" hidden>
                 <article
                   class="lead-card"
                   data-city="Casablanca"
@@ -553,8 +589,12 @@
                 <li>Demandes filtrées par ville et spécialité</li>
                 <li>Nouveaux dossiers dans votre fil</li>
               </ul>
-              <button class="primary-button" type="button">
-                Simuler le déblocage <span aria-hidden="true">→</span>
+              <button
+                class="primary-button"
+                type="button"
+                id="demo-plan-action"
+              >
+                Simuler l’abonnement · 300 DH/mois
               </button>
               <small class="pricing-note"
                 >Aucun paiement réel dans cette maquette.</small
@@ -572,61 +612,41 @@
         <div class="section-heading">
           <div>
             <span class="eyebrow-small">APERÇU ADMINISTRATION</span>
-            <h2 id="admin-title">Validation des profils avocat.</h2>
+            <h2 id="admin-title">Suivez les profils et abonnements.</h2>
           </div>
           <p>
-            Écran de démonstration uniquement : aucune validation ni activation
-            d’abonnement n’est enregistrée.
+            Gérez des profils fictifs et observez les chiffres se mettre à jour
+            dans le navigateur.
           </p>
         </div>
         <div class="admin-panel">
-          <div class="admin-table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Profil</th>
-                  <th>Ville · spécialité</th>
-                  <th>Validation</th>
-                  <th>Abonnement</th>
-                  <th>Actions (visuelles)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <strong>Profil avocat A</strong
-                    ><small>Compte de démonstration</small>
-                  </td>
-                  <td>Rabat<br /><small>Droit du travail</small></td>
-                  <td><span class="status status-pending">À valider</span></td>
-                  <td><span class="status status-off">Inactif</span></td>
-                  <td>
-                    <button class="table-button" type="button">
-                      Valider le profil
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Profil avocat B</strong
-                    ><small>Compte de démonstration</small>
-                  </td>
-                  <td>Casablanca<br /><small>Droit des affaires</small></td>
-                  <td><span class="status status-approved">Validé</span></td>
-                  <td><span class="status status-on">Démo active</span></td>
-                  <td>
-                    <button class="table-button" type="button">
-                      Réinitialiser la démo
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="admin-preview-stats">
+            <article>
+              <span>Avocats inscrits</span>
+              <strong id="home-lawyer-total">4</strong>
+            </article>
+            <article>
+              <span>Profils à valider</span>
+              <strong id="home-lawyer-pending">2</strong>
+            </article>
+            <article>
+              <span>Profils validés</span>
+              <strong id="home-lawyer-verified">2</strong>
+            </article>
+            <article>
+              <span>Abonnements démo actifs</span>
+              <strong id="home-subscription-total">1</strong>
+            </article>
           </div>
-          <p class="admin-disclaimer">
-            Dans l’application complète, ces actions sont réservées aux
-            administrateurs authentifiés et leurs statuts sont enregistrés côté
-            serveur.
+          <div class="admin-preview-actions">
+            <span class="status status-off">LocalStorage · démonstration</span>
+            <a class="table-button admin-preview-link" href="admin.html"
+              >Ouvrir le tableau admin <span aria-hidden="true">→</span></a
+            >
+          </div>
+          <p class="admin-disclaimer" id="home-storage-status" role="status">
+            Les statuts de démonstration restent dans ce navigateur; aucune
+            donnée client n’est enregistrée.
           </p>
         </div>
       </section>
@@ -638,6 +658,7 @@
         ><span class="brand-name">Mohami<span>Connect</span></span></a
       >
       <span>Une passerelle vers un accompagnement juridique au Maroc.</span>
+      <a href="admin.html">Administration démo</a>
       <a href="#accueil">Retour en haut ↑</a>
     </footer>
   </body>
